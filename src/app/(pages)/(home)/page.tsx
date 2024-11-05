@@ -8,6 +8,7 @@ const HomePage = () => {
         <> 
             <DefaultNavbar />
             <HeroSection />
+            <div className="my-12" />
             <Footer />
         </>
     )

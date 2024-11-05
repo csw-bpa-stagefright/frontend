@@ -4,10 +4,14 @@ import cinzel from "@/~/libs/fonts/cinzel";
 import Link from "next/link";
 import { ShoppingBag } from "react-feather"
 
-const DefaultNavbar = () => {
+interface DefaultNavbarInterface {
+    whitebg?:boolean;
+}
+
+const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
     return (
         <>
-        <nav className="z-[100] bg-mainbg/90 backdrop-blur-[5px] px-5 py-5 border-b-[1px] border-b-black/10 sticky top-0 left-0 w-full">
+        <nav className={`z-[100] ${props.whitebg ? "bg-white/90" : "bg-mainbg/90"} backdrop-blur-[5px] px-5 py-5 border-b-[1px] border-b-black/10 sticky top-0 left-0 w-full`}>
             <div className="max-w-[1350px] mx-auto flex items-center justify-between w-full">
                 <div>
                     <Link href={"/"} className="group">
@@ -35,7 +39,7 @@ const DefaultNavbar = () => {
                     <button className="border-[0px] flex items-center justify-center opacity-70 hover:opacity-100 hover:scale-[105%] px-2 py-2 transition-all duration-200">
                         <ShoppingBag size={22} />
                     </button>
-                    <button className="bg-neutral-950 hover:opacity-90 text-white px-7 py-2.5 rounded-sm text-[0.9rem] uppercase">Sign Up</button>
+                    <Link href={"/auth/signup"} className="bg-neutral-950 hover:opacity-90 text-white px-7 py-2.5 rounded-sm text-[0.9rem] uppercase">Sign Up</Link>
                 </div>
             </div>
         </nav>
