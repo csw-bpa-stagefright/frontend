@@ -6,6 +6,7 @@ import { ShoppingBag } from "react-feather"
 
 interface DefaultNavbarInterface {
     whitebg?:boolean;
+    hideMiddleLinks?:boolean;
 }
 
 const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
@@ -18,6 +19,9 @@ const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
                     <h1 className={`text-[1.65rem] group-hover:opacity-100 opacity-70 font-medium ${cinzel.className} transition-all duration-100`}>Stage Fright</h1>
                     </Link>
                 </div>
+                {
+                    !(props.hideMiddleLinks)
+                    &&
                 <ul className="hidden lg:flex items-center justify-center gap-0 uppercase bg-[rgba(0,0,0,0.0)] px-0 py-0 rounded-sm">
                     <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
                         <li >About</li>
@@ -35,6 +39,7 @@ const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
                         <li>Contact</li>
                     </Link>
                 </ul>
+                }
                 <div className="flex items-center justify-center gap-5">
                     <button className="border-[0px] flex items-center justify-center opacity-70 hover:opacity-100 hover:scale-[105%] px-2 py-2 transition-all duration-200">
                         <ShoppingBag size={22} />
