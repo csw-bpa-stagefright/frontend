@@ -1,0 +1,18 @@
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.7" d="M1000 500C1000 776.142 776.142 1000 500 1000C223.858 1000 0 776.142 0 500C0 223.858 223.858 0 500 0C776.142 0 1000 223.858 1000 500ZM322.695 500C322.695 597.923 402.077 677.305 500 677.305C597.923 677.305 677.305 597.923 677.305 500C677.305 402.077 597.923 322.695 500 322.695C402.077 322.695 322.695 402.077 322.695 500Z" fill="white"/>
+<path d="M999.5 500C999.5 775.866 775.866 999.5 500 999.5C224.134 999.5 0.5 775.866 0.5 500C0.5 224.134 224.134 0.5 500 0.5C775.866 0.5 999.5 224.134 999.5 500ZM321.816 500C321.816 598.408 401.592 678.184 500 678.184C598.408 678.184 678.184 598.408 678.184 500C678.184 401.592 598.408 321.816 500 321.816C401.592 321.816 321.816 401.592 321.816 500Z" fill="url(#paint0_angular_77_13)" stroke="black"/>
+<path d="M947 500C947 746.871 746.871 947 500 947C253.129 947 53 746.871 53 500C53 253.129 253.129 53 500 53C746.871 53 947 253.129 947 500Z" stroke="white" stroke-opacity="0.59" stroke-width="6"/>
+<path d="M722 500C722 622.607 622.607 722 500 722C377.393 722 278 622.607 278 500C278 377.393 377.393 278 500 278C622.607 278 722 377.393 722 500Z" stroke="white" stroke-opacity="0.59" stroke-width="6"/>
+<circle cx="499.5" cy="499.5" r="7.5" fill="black"/>
+<circle cx="500" cy="500" r="475" stroke="black" stroke-width="50"/>
+<defs>
+<radialGradient id="paint0_angular_77_13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(500 500) scale(437.5 444.276)">
+<stop offset="0.1"/>
+<stop offset="0.137804" stop-color="white" stop-opacity="0.1"/>
+<stop offset="0.17" stop-color="#090909"/>
+<stop offset="0.6"/>
+<stop offset="0.64" stop-color="white" stop-opacity="0.1"/>
+<stop offset="0.67"/>
+</radialGradient>
+</defs>
+</svg>
