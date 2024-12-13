@@ -6,12 +6,13 @@ import VoiceAssistant from "@/~/libs/components/global/VoiceAssistant/VoiceAssis
 
 const HomePage = () => {
     return (
-        <> 
+        <>
             <VoiceAssistant />
             <DefaultNavbar />
             <HeroSection />
             <div className="my-12" />
             <Footer />
+            <div className="bg-[#edebe7] w-full h-[100vh] fixed left-0 top-0 z-[-1]"></div>
         </>
     )
 }
