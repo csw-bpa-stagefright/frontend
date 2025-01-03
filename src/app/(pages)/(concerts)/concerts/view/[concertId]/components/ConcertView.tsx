@@ -4,6 +4,10 @@ import Image from "next/image";
 import L from "leaflet";
 import { Calendar, DollarSign, MapPin } from "react-feather";
 
+import dexie from "@/~/libs/dexie";
+import { useLiveQuery } from 'dexie-react-hooks';
+import { useCartStore } from "@/~/libs/providers/cart-store-provider";
+
 type ConcertType = {
 	date: string,
 	description: string,
@@ -28,6 +32,36 @@ function getDateString(dt: string) {
 const ConcertView: React.FC<ConcertViewInterface> = ({ ...props }) => {
 	const [bbox, setBbox] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
+
+	const { isActive, deactivateCart, activateCart, toggleCart } = useCartStore((state) => state);
+
+	const cartItems = useLiveQuery(
+		() => dexie.cartItems.toArray()
+	)
+	const isItemAdded = cartItems?.some((cartItem) => cartItem.itemId === props.concert.id);
+
+	async function addToCart() {
+		try {
+			const itemData = props.concert;
+			const menuItems = await dexie.cartItems.add({
+				itemId: itemData.id,
+				itemName: itemData.name,
+				itemDesc: itemData.description,
+				itemPrice: JSON.stringify(itemData.ticketCost),
+				imageUrl: itemData.imageUrl as string,
+				originalItemPrice: JSON.stringify(itemData.ticketCost),
+				itemQuantity: 1,
+				itemType: 'ticket'
+			})
+			console.log("Successfully added item to cart")
+		} catch (error) {
+			console.log(`An error occured. ${error}`)
+			alert("Could not add item to cart :(")
+		}
+		// dispatch(toggle())
+		activateCart();
+
+	}
 
 	useEffect(() => {
 		const fetchLocation = async () => {
@@ -90,6 +124,10 @@ const ConcertView: React.FC<ConcertViewInterface> = ({ ...props }) => {
 						</div>
 					</div>
 				</div>
+
+				<button onClick={() => {
+					addToCart();
+				}}>Add to cart</button>
 			</section>
 		</>
 	)
