@@ -34,6 +34,7 @@ const Concert: React.FC<ConcertInterface> = ({ ...props }) => {
 						alt="concert image"
 						layout="fill"
 						objectFit="cover"
+						className="rounded-md"
 					/>
 					<div className="absolute left-0 top-0 z-[100] flex items-center justify-center gap-1 bg-neutral-950/50 text-white/90 px-1.5 py-1 text-sm"><p>{date?.month}</p><p>{date?.day}</p></div>
 				</div>

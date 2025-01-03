@@ -3,6 +3,7 @@ import lato from "../libs/fonts/lato";
 
 import { type Metadata } from "next";
 import { Toaster } from "react-hot-toast";
+import { CartStoreProvider } from "../libs/providers/cart-store-provider";
 
 export const metadata: Metadata = {
   title: "StageFright",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${lato.className}`}>
       <body>
-        <Toaster />
-        {children}
+        <CartStoreProvider>
+          <Toaster />
+          {children}
+        </CartStoreProvider>
       </body>
     </html>
   );
