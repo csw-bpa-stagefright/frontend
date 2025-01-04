@@ -36,7 +36,7 @@ const Concert: React.FC<ConcertInterface> = ({ ...props }) => {
 						objectFit="cover"
 						className="rounded-md"
 					/>
-					<div className="absolute left-0 top-0 z-[100] flex items-center justify-center gap-1 bg-neutral-950/50 text-white/90 px-1.5 py-1 text-sm"><p>{date?.month}</p><p>{date?.day}</p></div>
+					<div className="absolute left-0 top-0 z-[1] flex items-center justify-center gap-1 bg-neutral-950/50 text-white/90 px-1.5 py-1 text-sm"><p>{date?.month}</p><p>{date?.day}</p></div>
 				</div>
 				<h1 className="mt-3 text-xl font-semibold tracking-tight">{props.concert.name}</h1>
 				<p className="opacity-50">{props.concert.description}</p>

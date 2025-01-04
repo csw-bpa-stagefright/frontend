@@ -9,7 +9,7 @@ const DashboardContents = () => {
 	const [jwt, setJwt] = useState<string>('');
 	const [name, setName] = useState<string>('');
 
-	const [currentView, setCurrentView] = useState<'tickets' | "merch">('tickets');
+	const [currentView, setCurrentView] = useState<'tickets' | "notifs">('tickets');
 
 	useEffect(() => {
 		const getJwt = getCookie('jwt')
@@ -32,14 +32,14 @@ const DashboardContents = () => {
 				}}>
 					View Tickets
 				</button>
-				<button className={`${currentView == 'merch' && "!bg-black text-white"} px-3 py-1 bg-neutral-100 rounded-md hover:bg-neutral-200`} onClick={() => {
-					setCurrentView(() => 'merch')
+				<button className={`${currentView == 'notifs' && "!bg-black text-white"} px-3 py-1 bg-neutral-100 rounded-md hover:bg-neutral-200`} onClick={() => {
+					setCurrentView(() => 'notifs')
 				}}>
-					View Merchandise
+					View Notifications
 				</button>
 			</div>
 			{
-				currentView == "tickets" ? <TicketsView jwt={jwt} /> : ""
+				currentView == "tickets" ? <TicketsView jwt={jwt} /> : <p className="opacity-50 mt-12">No notifications found</p>
 			}
 		</>
 	)

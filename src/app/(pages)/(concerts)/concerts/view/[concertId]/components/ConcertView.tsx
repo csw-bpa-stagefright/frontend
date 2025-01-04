@@ -45,7 +45,7 @@ const ConcertView: React.FC<ConcertViewInterface> = ({ ...props }) => {
 			const itemData = props.concert;
 			const menuItems = await dexie.cartItems.add({
 				itemId: itemData.id,
-				itemName: itemData.name,
+				itemName: 'Ticket to ' + itemData.name,
 				itemDesc: itemData.description,
 				itemPrice: JSON.stringify(itemData.ticketCost),
 				imageUrl: itemData.imageUrl as string,
@@ -101,6 +101,11 @@ const ConcertView: React.FC<ConcertViewInterface> = ({ ...props }) => {
 							<p className="flex items-center justify-center gap-2 text-lg opacity-50 font-medium"><MapPin size={21} />{props.concert.location}</p>
 							<p className="flex items-center justify-center gap-2 text-lg opacity-50 font-medium"><DollarSign size={21} />{props.concert.ticketCost} per Ticket</p>
 							<p className="flex items-center justify-center gap-2 text-lg opacity-50 font-medium"><Calendar size={21} />{...getDateString(props.concert.date)}</p>
+
+							<button className="mt-5 bg-black rounded-md text-white px-3 py-2 w-[300px] hover:opacity-70" onClick={() => {
+								addToCart();
+							}}>Add ticket to cart</button>
+
 						</div>
 					</div>
 					<div className="flex w-full justify-center items-center gap-3">
@@ -114,20 +119,28 @@ const ConcertView: React.FC<ConcertViewInterface> = ({ ...props }) => {
 							/>
 						</div>
 						<div className="w-full">
+							{
+								/*
+								<iframe
+									// width="600"
+									height="300"
+									src={`https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`}
+									className="rounded-md border-[1px] border-neutral-400 w-full"
+									allowFullScreen
+								/>
+								 * */
+							}
+
 							<iframe
 								// width="600"
 								height="300"
-								src={`https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`}
+								loading="lazy"
 								className="rounded-md border-[1px] border-neutral-400 w-full"
-								allowFullScreen
-							/>
+								src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBrSyOlvlzMjeIO_YDeMOFpv83_MAfc_-E&q=${props.concert.location}`}>
+							</iframe>
 						</div>
 					</div>
 				</div>
-
-				<button onClick={() => {
-					addToCart();
-				}}>Add to cart</button>
 			</section>
 		</>
 	)

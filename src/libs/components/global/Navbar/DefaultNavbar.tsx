@@ -63,12 +63,6 @@ const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
                 <div className="max-w-[1350px] mx-auto flex items-center justify-between w-full">
                     <div>
                         <Link href={"/"} className="group flex items-center justify-center gap-2">
-                            <Image
-                                src="/images/discy-wiscy.svg"
-                                alt="bob"
-                                width={30}
-                                height={30}
-                            />
                             <h1 className={`text-[1.65rem] group-hover:opacity-100 opacity-70 font-medium ${cinzel.className} transition-all duration-100`}>Stage Fright</h1>
                         </Link>
                     </div>
@@ -76,18 +70,22 @@ const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
                         !(props.hideMiddleLinks)
                         &&
                         <ul className="hidden lg:flex items-center justify-center gap-0 uppercase bg-[rgba(0,0,0,0.0)] px-0 py-0 rounded-sm">
-                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
+                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"/about"}>
                                 <li >About</li>
                             </Link>
                             <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"/concerts"}>
                                 <li >Concerts</li>
                             </Link>
-                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
+                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"/merchandise"}>
                                 <li>Merchandise</li>
                             </Link>
-                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
-                                <li>Releases</li>
-                            </Link>
+                            {
+                                /*
+                        <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
+                            <li>Releases</li>
+                        </Link>
+                                 */
+                            }
                             <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
                                 <li>Contact</li>
                             </Link>

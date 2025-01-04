@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import AnimateOnScroll from '@/~/libs/components/global/AOS/AnimateOnScroll';
 import { deleteCookie } from "cookies-next";
+import Link from "next/link";
 
 const HeroSection = () => {
     const [isVideoEnded, setIsVideoEnded] = useState<boolean>(true);
@@ -30,16 +31,46 @@ const HeroSection = () => {
                     >
 
                         <div className="text-white relative z-[50] px-12 py-7">
-                            <h1 className="md:text-[2.8rem] text-4xl font-semibold mt-5">StageFright Super Rock Tour</h1>
-                            <p className="lg:max-w-[50%] opacity-80 lg:opacity-70 mt-5 text-lg">Tickets are now on sale! This is some example filler text which should later be changed. Ooga booga this is an example ooga booga etc. etc.</p>
-                            <button className="bg-white hover:opacity-90 text-black mt-5 px-7 py-2.5 rounded-sm text-[0.9rem] uppercase font-semibold">Buy Tickets</button>
+                            <h1 className="md:text-[2.8rem] text-4xl font-semibold mt-5">StageFright Super Rock Tour Upcoming!</h1>
+                            <p className="lg:max-w-[50%]  mb-5 opacity-80 lg:opacity-70 mt-5 text-lg">Tickets are now on sale! The tour will have multiple concerts and will span 3 months, visiting popular areas in the USA! Merchandise is also on sale!</p>
+                            <Link href={"/concerts"} className="bg-white hover:opacity-90 text-black mt-5 px-7 py-2.5 rounded-sm text-[0.9rem] uppercase font-semibold">Buy Tickets</Link>
 
                             <div className="mt-24">
-                                <p className="uppercase text-lg opacity-90">Shop Merchandise</p>
+                                <p className="uppercase text-lg opacity-90">Shop Tickets</p>
                                 <div className="mt-5 flex items-center justify-start gap-5">
-                                    <div className="w-[150px] h-[200px] bg-red-500/50" />
-                                    <div className="w-[150px] h-[200px] bg-red-500/50" />
-                                    <div className="w-[150px] h-[200px] bg-red-500/50" />
+                                    <Link href="/concerts" className="w-[150px] hover:opacity-80 h-[200px] bg-white/10 cursor-pointer">
+                                        <div className="relative w-full h-[150px]">
+                                            <Image
+                                                src="/images/img1.avif"
+                                                alt="test"
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <p className="text-center mt-3">Upcoming Concert</p>
+                                    </Link>
+                                    <Link href="/concerts" className="w-[150px] hover:opacity-80 h-[200px] bg-white/10 cursor-pointer">
+                                        <div className="relative w-full h-[150px]">
+                                            <Image
+                                                src="/images/img2.avif"
+                                                alt="test"
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <p className="text-center mt-3">Upcoming Concert</p>
+                                    </Link>
+                                    <Link href="/concerts" className="w-[150px] hover:opacity-80 h-[200px] bg-white/10 cursor-pointer">
+                                        <div className="relative w-full h-[150px]">
+                                            <Image
+                                                src="/images/img3.avif"
+                                                alt="test"
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <p className="text-center mt-3">Upcoming Concert</p>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
