@@ -38,7 +38,7 @@ const ConcertsDisplay = () => {
 		<>
 			<section className="max-w-[1100px] ml-auto mr-auto px-3 py-4">
 				<h1 className="mt-16 text-3xl font-semibold">Concerts</h1>
-				<p className="mt-2 opacity-50">View the list of upcoming and finished concerts for StageFright.</p>
+				<p className="mt-2 opacity-50">View the list of upcoming concerts for StageFright.</p>
 				<section className="mt-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-7 mb-7 justify-center items-center gap-y-16">
 					{
 						concerts.map((concert, index) => {

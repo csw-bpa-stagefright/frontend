@@ -4,6 +4,7 @@ import { redirect } from 'next/dist/client/components/redirect';
 import React, { useState, useEffect, useRef } from 'react'
 import { Mic, X } from 'react-feather';
 import { useRouter } from 'next/navigation';
+import { useCartStore } from '@/~/libs/providers/cart-store-provider';
 
 // import { useRouter } from 'next13-progressbar';
 
@@ -18,20 +19,23 @@ interface VACInterface {
 
 const VoiceAssistantContents: React.FC<VACInterface> = ({ isSmallScreen }) => {
   // Speech recognition setup
-  const [isActive , setIsActive] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
   const [isWelcomeActive, setIsWelcomeActive] = useState<boolean>(false);
   const [transcription, setTranscription] = useState<string>("");
   const [popupDisabled, setPopupDisabled] = useState<boolean>(false);
   const [notSupported, setNotSupported] = useState<boolean>(true);
 
+  const { deactivateCart, activateCart, toggleCart } = useCartStore((state) => state);
+
+
   const router = useRouter();
 
-//   const logOut = async() => {
-//     if (cookies.token) {
-//       await deleteUserCookies()
-//       window.location.reload();
-//     }
-//   }
+  //   const logOut = async() => {
+  //     if (cookies.token) {
+  //       await deleteUserCookies()
+  //       window.location.reload();
+  //     }
+  //   }
 
 
   const handleSpeechRecognition = (event: SpeechRecognitionEvent) => {
@@ -59,7 +63,7 @@ const VoiceAssistantContents: React.FC<VACInterface> = ({ isSmallScreen }) => {
       if (recognizedPhrase.includes("stop")) {
         setIsActive(prevIsActive => false);
         return
-      } 
+      }
       if (!isActive) {
         console.log("invalid")
         return
@@ -74,6 +78,14 @@ const VoiceAssistantContents: React.FC<VACInterface> = ({ isSmallScreen }) => {
         // logOut();
       }
 
+      if (recognizedPhrase.includes("merch")) {
+        window.location.replace("/merchandise");
+      }
+
+      if (recognizedPhrase.includes("cart")) {
+        activateCart();
+      }
+
       if (recognizedPhrase.includes('concert')) {
         window.location.replace('/concerts')
       }
@@ -85,32 +97,30 @@ const VoiceAssistantContents: React.FC<VACInterface> = ({ isSmallScreen }) => {
       if (recognizedPhrase.includes('signup') ||
         recognizedPhrase.includes('tothesignuppage') ||
         recognizedPhrase.includes('signuppage')) {
-          window.location.replace("/auth/signup")
+        window.location.replace("/auth/signup")
       }
 
       if (recognizedPhrase.includes('login') ||
         recognizedPhrase.includes('totheloginpage') ||
         recognizedPhrase.includes('loginpage')) {
-          window.location.replace("/auth/login")
+        window.location.replace("/auth/login")
       }
 
-    //   if (recognizedPhrase.includes('cart') ||
-    //     recognizedPhrase.includes('purchase')) {
-    //     setIsActive(prev => false);
-    //   }
+      //   if (recognizedPhrase.includes('cart') ||
+      //     recognizedPhrase.includes('purchase')) {
+      //     setIsActive(prev => false);
+      //   }
 
       if (recognizedPhrase.includes('about')) {
         window.location.replace('/about')
       }
 
 
-        if (recognizedPhrase.includes('backhome') ||
+      if (recognizedPhrase.includes('backhome') ||
         recognizedPhrase.includes('tothehomepage') ||
         recognizedPhrase.includes('home')) {
-          window.location.replace("/")
-        }
-
-
+        window.location.replace("/")
+      }
     }
   };
 
@@ -171,41 +181,41 @@ const VoiceAssistantContents: React.FC<VACInterface> = ({ isSmallScreen }) => {
     }, 5000)
   }, [isSmallScreen])
   return (
-  <>
-      { !notSupported && (
-      <>
-      <div className="fixed z-[100] bottom-5 right-5 min-w-[300px] group flex flex-col items-end justify-center pointer-events-none">
-        <div className={`bg-white ${ (isActive || popupDisabled) ? "mb-0 opacity-0 blur-md pointer-events-none" : isWelcomeActive ? "mb-[8.5rem] opacity-60 hover:opacity-100  pointer-events-auto group-hover:opacity-100 hover:shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.18)]" : "mb-0 opacity-0 blur-md pointer-events-none" } transition-all duration-300 absolute bottom-[100%] group right-0 px-2.5 py-2.5 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-full cursor-pointer`} onClick={() => setPopupDisabled(prev => true)}>
-              <X 
-              size={20}
-              className="transition-all duration-100 text-black relative"
-              opacity={0.7}
+    <>
+      {!notSupported && (
+        <>
+          <div className="fixed z-[100] bottom-5 right-5 min-w-[300px] group flex flex-col items-end justify-center pointer-events-none">
+            <div className={`bg-white ${(isActive || popupDisabled) ? "mb-0 opacity-0 blur-md pointer-events-none" : isWelcomeActive ? "mb-[8.5rem] opacity-60 hover:opacity-100  pointer-events-auto group-hover:opacity-100 hover:shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.18)]" : "mb-0 opacity-0 blur-md pointer-events-none"} transition-all duration-300 absolute bottom-[100%] group right-0 px-2.5 py-2.5 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-full cursor-pointer`} onClick={() => setPopupDisabled(prev => true)}>
+              <X
+                size={20}
+                className="transition-all duration-100 text-black relative"
+                opacity={0.7}
               />
-        </div>
+            </div>
 
-        <div className={`bg-white ${ (isActive || popupDisabled) ? "mb-0 opacity-0 blur-md pointer-events-none" : isWelcomeActive ? "mb-5 opacity-60 hover:opacity-100 group-hover:opacity-100  pointer-events-auto" : "mb-0 opacity-0 blur-md pointer-events-none" } transition-all duration-300 absolute bottom-[100%] right-0 px-5 py-4 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-lg`}>
-          <p>Hello! I am your personal AI voice assistant. Click on the mic to get started</p>
-        </div>
+            <div className={`bg-white ${(isActive || popupDisabled) ? "mb-0 opacity-0 blur-md pointer-events-none" : isWelcomeActive ? "mb-5 opacity-60 hover:opacity-100 group-hover:opacity-100  pointer-events-auto" : "mb-0 opacity-0 blur-md pointer-events-none"} transition-all duration-300 absolute bottom-[100%] right-0 px-5 py-4 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-lg`}>
+              <p>Hello! I am your personal AI voice assistant. Click on the mic to get started</p>
+            </div>
 
-        <div className={`bg-white ${ (isActive) ? "mb-5" :"mb-0 opacity-0 blur-md" } transition-all duration-300 absolute bottom-[100%] right-0 px-5 py-4 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-lg`}>
-          <p>Listening...</p>
-        </div>
+            <div className={`bg-white ${(isActive) ? "mb-5" : "mb-0 opacity-0 blur-md"} transition-all duration-300 absolute bottom-[100%] right-0 px-5 py-4 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-lg`}>
+              <p>Listening...</p>
+            </div>
 
-        <div className={`bg-white ${ isActive ? "mb-[5.7rem]" :"mb-0 opacity-0 blur-md" } transition-all duration-300 absolute bottom-[100%] right-0 px-5 py-4 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-lg`}>
-          <p className="text-left opacity-70">"{transcription}"</p>
-        </div>
+            <div className={`bg-white ${isActive ? "mb-[5.7rem]" : "mb-0 opacity-0 blur-md"} transition-all duration-300 absolute bottom-[100%] right-0 px-5 py-4 shadow-[0px_-1px_15px_0px_rgba(0,0,0,0.15)] rounded-lg`}>
+              <p className="text-left opacity-70">"{transcription}"</p>
+            </div>
 
-        
-        <button className="p-4 rounded-full bg-black text-white cursor-pointer shadow-[0px_-1px_18px_0px_rgba(255,255,255,0.35)] opacity-90 hover:opacity-100 hover:shadow-[0px_-1px_18px_0px_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-110 pointer-events-auto" onClick={handleClick}>
-          <Mic 
-          size={20}
-          color='white'
-          />
-        </button>
-      </div>
-      </>
-      ) }
-  </>
+
+            <button className="p-4 rounded-full bg-black text-white cursor-pointer shadow-[0px_-1px_18px_0px_rgba(255,255,255,0.35)] opacity-90 hover:opacity-100 hover:shadow-[0px_-1px_18px_0px_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-110 pointer-events-auto" onClick={handleClick}>
+              <Mic
+                size={20}
+                color='white'
+              />
+            </button>
+          </div>
+        </>
+      )}
+    </>
   )
 
 }
@@ -231,11 +241,11 @@ const VoiceAssistant = () => {
     };
   }, []);
   return (
-  <>
+    <>
       <div className="fixed bottom-0 right-0 z-[100]">
         <VoiceAssistantContents isSmallScreen={isSmallScreen} />
       </div>
-  </>
+    </>
   )
 }
 
