@@ -19,12 +19,14 @@ const TicketsView: React.FC<TicketsViewInterface> = ({ ...props }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [currTicketid, setCurrTicketId] = useState<string>('');
+	const [currIsScanned, setCurrIsScanned] = useState<boolean>(false);
 
 	const [resData, setData] = useState<{
 		ticket: {
 			id: string,
 			concertId: string,
 			userId: string
+			isScanned: boolean;
 		},
 		concert: {
 			date: string,
@@ -106,6 +108,7 @@ const TicketsView: React.FC<TicketsViewInterface> = ({ ...props }) => {
 						<X className="absolute right-[10px] top-[10px] cursor-pointer" onClick={() => {
 							setIsModalOpen(() => false)
 						}} />
+						<p className="mb-4">{currIsScanned ? "Scanned" : "Not scanned in yet"}</p>
 						<QRCode value={currTicketid} />
 					</div>
 				</div>
@@ -116,7 +119,9 @@ const TicketsView: React.FC<TicketsViewInterface> = ({ ...props }) => {
 				{resData.map((ticket, index) => {
 					return (
 						<div onClick={() => {
+							console.log(ticket)
 							setCurrTicketId(() => ticket.ticket.id);
+							setCurrIsScanned(() => ticket.ticket.isScanned);
 							setIsModalOpen(() => true);
 						}} key={index} className="border-[1px] border-neutral-300 px-4 py-3 rounded-md cursor-pointer hover:bg-neutral-100">
 							<p className="text-lg font-medium tracking-tight">{ticket.concert.name}</p>

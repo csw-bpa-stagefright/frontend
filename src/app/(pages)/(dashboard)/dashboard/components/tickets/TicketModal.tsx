@@ -4,6 +4,7 @@ import React from "react"
 
 interface TicketModalInterface {
 	ticketId: string
+	isScanned: boolean;
 }
 
 const TicketModal: React.FC<TicketModalInterface> = ({ ...props }) => {
