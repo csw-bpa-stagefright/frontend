@@ -86,7 +86,7 @@ const DefaultNavbar: React.FC<DefaultNavbarInterface> = ({ ...props }) => {
                         </Link>
                                  */
                             }
-                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"#"}>
+                            <Link className="w-full h-full hover:bg-[rgba(0,0,0,0.03)] hover:scale-[105%] px-5 py-3 transition-all duration-200" href={"/#contact"}>
                                 <li>Contact</li>
                             </Link>
                         </ul>
