@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
       </section>
       <div className="w-full px-5 py-4 flex items-center justify-center bg-neutral-950 text-neutral-400">
-        © StageFright 2023-2024
+        © StageFright 2024-2025
       </div>
     </>
   )
